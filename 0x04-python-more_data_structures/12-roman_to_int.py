@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 
 def roman_to_int(roman_string):
-    """
-    converts a Roman numeral to an integer
+    """converts a Roman numeral to an integer
     """
 
     if isinstance(roman_string, str) and roman_string is not None:
@@ -12,13 +11,13 @@ def roman_to_int(roman_string):
         }
 
         result = 0
-        prev_result = 0
+        prev_value = 0
         for c in reversed(roman_string):
             value = roman_numerals.get(c, 0)
-            if value >= prev_result:
+            if value >= prev_value:
                 result += value
             else:
                 result -= value
             prev_value = value
-        return (result)
-    return (0)
+        return result
+    return 0
