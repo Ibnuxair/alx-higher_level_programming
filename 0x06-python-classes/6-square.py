@@ -60,18 +60,11 @@ class Square:
 
     def my_print(self):
         """ Prints in stdout the square with the character #."""
-        if self.__position is None:
-            raise ValueError("position is not set")
-
-        size = self.__position[0]
-        pos_y = self.__position[1]
-
-        if size == 0:
+        if self.__size == 0:
             print()
-            return
 
-        for i in range(size):
-            if i < pos_y:
-                print(" " * size)
-            else:
-                print("#" * size)
+        for _ in range(self.__position[1]):
+            print()
+
+        for _ in range(self.__size):
+            print("_" * self.__position[0] + "#" * self.__size)
