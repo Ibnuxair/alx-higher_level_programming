@@ -1,0 +1,24 @@
+"""
+This is a module that tests the add_integer function.
+"""
+>>> add_integer = __import__('0-add_integer').add_integer
+>>> add_integer(10, 5)
+15
+>>> add_integer(2, 2.5)
+4
+>>> add_integer(4.6, 2)
+6
+>>> add_integer(2)
+100
+>>> add_integer(12.9)
+110
+>>> add_integer('a', 2)
+Traceback (most recent call last):
+	  ...
+TypeError: a must be an integer
+>>> add_integer(2, 'b')
+Traceback (most recent call last):
+	  ...
+TypeError: b must be an integer
+>>> add_integer(2.3, 8.4)
+10
