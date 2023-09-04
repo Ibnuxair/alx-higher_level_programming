@@ -1,0 +1,7 @@
+"""
+This module is use to test task0.
+"""
+
+>>> rectangle = __import__('0-rectangle').Rectangle
+>>> isinstance(rectangle, Rectangle)
+True
