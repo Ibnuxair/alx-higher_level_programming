@@ -4,6 +4,7 @@
 This module defines a class named MyList that inherits from list.
 """
 
+
 class MyList(list):
     """A class that inherits from a list class."""
 
