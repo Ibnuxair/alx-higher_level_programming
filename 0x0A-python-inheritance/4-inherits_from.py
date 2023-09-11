@@ -9,7 +9,9 @@ inherited (directly or indirectly) from the specified class; otherwise False.
 
 def inherits_from(obj, a_class):
 
-    """Checks the object."""
+    """
+    Checks the object.
+    """
 
     if type(obj) == a_class:
         return False
