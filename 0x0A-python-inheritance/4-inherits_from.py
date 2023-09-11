@@ -1,11 +1,9 @@
 #!/usr/bin/python3
 
 """
-This module defines a  function that returns True if the obj is an instance of
+Defines a  function that returns True if the obj is an instance of a class that
 
-a class that inherited (directly or indirectly) from the specified class;
-
-otherwise False.
+inherited (directly or indirectly) from the specified class; otherwise False.
 """
 
 
