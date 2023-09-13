@@ -15,4 +15,9 @@ def read_file(filename=""):
         if not content:
             print("Empty file")
         else:
-            print(content)
+            if len(content) > 1000:
+                truncated_content = content[:1000] + "..."
+                print("Large HTML text (truncated):")
+                print(truncated_content)
+            else:
+                print(content)
