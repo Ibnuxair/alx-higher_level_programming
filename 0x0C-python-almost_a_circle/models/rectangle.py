@@ -129,3 +129,9 @@ class Rectangle(Base):
             result += "#" * self.__width + "\n"
         print(result, end="")
         return result
+
+    def __str__(self):
+        """Returns the string representation of the object."""
+
+        return "[Rectangle] ({}) {}/{} - {}/{}".format(
+            self.id, self.x, self.y, self.width, self.height)
