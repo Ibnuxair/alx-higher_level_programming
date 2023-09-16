@@ -11,8 +11,4 @@ def read_file(filename=""):
     """Reads a file and prints it's content."""
 
     with open(filename, encoding="utf-8") as a_file:
-        content = a_file.read().rstrip()
-        if not content:
-            print("Empty file")
-        else:
-            print(content)
+        print(a_file.read(), end="")
