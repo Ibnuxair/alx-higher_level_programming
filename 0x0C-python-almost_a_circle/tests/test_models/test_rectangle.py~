@@ -1,0 +1,88 @@
+#!/usr/bin/python3
+
+"""
+This module defines a class named TestRectangle.
+"""
+
+
+import unittest
+from models.rectangle import Rectangle
+
+
+class TestRectangle(unittest.TestCase):
+    """Tests Rectangle class."""
+
+    def test_empty_constructor(self):
+        """Test the constructor with no arguments."""
+
+        with self.assertRaises(TypeError):
+            rect = Rectangle()
+
+    def test_constructor(self):
+        """Test the constructor."""
+
+        rect = Rectangle(10, 20, 4, 7, 15)
+
+        self.assertEqual(rect.width, 10)
+        self.assertEqual(rect.height, 20)
+        self.assertEqual(rect.x, 4)
+        self.assertEqual(rect.y, 7)
+        self.assertEqual(rect.id, 15)
+
+    def test_setters(self):
+        """Test with valid values."""
+
+        rect = Rectangle(10, 20)
+
+        rect.width = 30
+        rect.height = 40
+        rect.x = 5
+        rect.y = 15
+        rect.id = 42
+
+        self.assertEqual(rect.width, 30)
+        self.assertEqual(rect.height, 40)
+        self.assertEqual(rect.x, 5)
+        self.assertEqual(rect.y, 15)
+        self.assertEqual(rect.id, 42)
+
+    def test_invalid_setters(self):
+        """Test invalid values."""
+
+        rect = Rectangle(10, 20)
+
+        with self.assertRaises(TypeError):
+            rect.width = "invalid"
+
+        with self.assertRaises(ValueError):
+            rect.width = -5
+
+        with self.assertRaises(TypeError):
+            rect.height = "invalid"
+
+        with self.assertRaises(ValueError):
+            rect.height = 0
+
+        with self.assertRaises(TypeError):
+            rect.x = "invalid"
+
+        with self.assertRaises(ValueError):
+            rect.x = -1
+
+        with self.assertRaises(TypeError):
+            rect.y = "invalid"
+
+        with self.assertRaises(ValueError):
+            rect.y = -1
+
+    def test_area(self):
+        """Test the area of the rectangle."""
+
+        rect = Rectangle(3, 2)
+        self.assertEqual(rect.area, 6)
+
+        rect = Rectangle(8, 7, 0, 0, 12)
+        self.assertEqual(rect.area, 56)
+
+    if __name__ == '__main__':
+        unittest.main()
