@@ -3,11 +3,23 @@
 """
 This module defines a class named Rectangle that inherits
 
-from BaseGeometry (7-base_geometry.py).
+from BaseGeometry class.
 """
 
 
-BaseGeometry = __import__('7-base_geometry').BaseGeometry
+class BaseGeometry:
+    """
+    A class representing a BaseGeometry.
+    """
+
+    def area(self):
+        raise Exception('area() is not implemented')
+
+    def integer_validator(self, name, value):
+        if type(value) != int:
+            raise TypeError('{} must be an integer'.format(name))
+        if value <= 0:
+            raise ValueError('{} must be greater than 0'.format(name))
 
 
 class Rectangle(BaseGeometry):
