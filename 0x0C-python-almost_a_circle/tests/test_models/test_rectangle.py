@@ -109,17 +109,21 @@ class TestRectangle(unittest.TestCase):
     def test_update(self):
         """Test the update method."""
 
-        r = Rectangle(1, 2, 3, 4, 5)
-        r.update(6)
-        self.assertEqual(r.id, 6)
-        r.update(7, 8)
-        self.assertEqual(r.width, 8)
-        r.update(9, 10, 11)
-        self.assertEqual(r.height, 11)
-        r.update(12, 13, 14, 15)
-        self.assertEqual(r.x, 15)
-        r.update(16, 17, 18, 19, 20)
-        self.assertEqual(r.y, 20)
+        rect = Rectangle(1, 2, 3, 4, 5)
+        rect.update(10, 20, 30, 40, 50)
+        self.assertEqual(rect.__str__(), "[Rectangle] (10) 40/50 - 20/30")
+
+        rect.update(100)
+        self.assertEqual(rect.__str__(), "[Rectangle] (100) 40/50 - 20/30")
+
+        rect.update(id=99, width=11, height=12, x=13, y=14)
+        self.assertEqual(rect.__str__(), "[Rectangle] (99) 13/14 - 11/12")
+
+        rect.update()
+        self.assertEqual(rect.__str__(), "[Rectangle] (99) 13/14 - 11/12")
+
+        rect.update(id=10, width=20, height=30, x=40, y=50, invalid=60)
+        self.assertEqual(rect.__str__(), "[Rectangle] (10) 40/50 - 20/30")
 
     def test_str(self):
         """Test the __str__ method."""
