@@ -106,6 +106,21 @@ class TestRectangle(unittest.TestCase):
             rect.display()
             self.assertEqual(mock_stdout.getvalue(), output)
 
+    def test_update(self):
+        """Test the update method."""
+
+        r = Rectangle(1, 2, 3, 4, 5)
+        r.update(6)
+        self.assertEqual(r.id, 6)
+        r.update(7, 8)
+        self.assertEqual(r.width, 8)
+        r.update(9, 10, 11)
+        self.assertEqual(r.height, 11)
+        r.update(12, 13, 14, 15)
+        self.assertEqual(r.x, 15)
+        r.update(16, 17, 18, 19, 20)
+        self.assertEqual(r.y, 20)
+
     def test_str(self):
         """Test the __str__ method."""
 

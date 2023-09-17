@@ -130,6 +130,14 @@ class Rectangle(Base):
         for _ in range(self.__height):
             print(" " * self.__x + "#" * self.__width)
 
+    def update(self, *args):
+        """Assigns an argument to each attribute"""
+
+        attributes = ["id", "width", "height", "x", "y"]
+        for i, arg in enumerate(args):
+            if i < len(attributes):
+                setattr(self, attributes[i], arg)
+
     def __str__(self):
         """Returns the string representation of the object."""
 
