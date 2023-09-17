@@ -124,11 +124,11 @@ class Rectangle(Base):
     def display(self):
         """Prints in stdout the Rectangle instance with the character #"""
 
-        result = ""
+        for _ in range(self.__y):
+            print()
+
         for _ in range(self.__height):
-            result += "#" * self.__width + "\n"
-        print(result, end="")
-        return result
+            print(" " * self.__x + "#" * self.__width)
 
     def __str__(self):
         """Returns the string representation of the object."""
