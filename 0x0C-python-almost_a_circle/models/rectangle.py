@@ -43,13 +43,13 @@ class Rectangle(Base):
 
     @property
     def width(self):
-        """Returns the width."""
+        """Getter for width."""
 
         return self.__width
 
     @width.setter
     def width(self, value):
-        """Sets the width."""
+        """Setter width."""
 
         if not isinstance(value, int):
             raise TypeError("width must be an integer")
@@ -59,13 +59,13 @@ class Rectangle(Base):
 
     @property
     def height(self):
-        """Returns the height.."""
+        """Getter for height.."""
 
         return self.__height
 
     @height.setter
     def height(self, value):
-        """Sets the height."""
+        """Setter for height."""
 
         if not isinstance(value, int):
             raise TypeError("height must be an integer")
@@ -75,13 +75,13 @@ class Rectangle(Base):
 
     @property
     def x(self):
-        """Returns the x."""
+        """Getter for x."""
 
         return self.__x
 
     @x.setter
     def x(self, value):
-        """Sets x."""
+        """Setter for x."""
 
         if not isinstance(value, int):
             raise TypeError("x must be an integer")
@@ -91,13 +91,13 @@ class Rectangle(Base):
 
     @property
     def y(self):
-        """Returns the y."""
+        """Getter for y."""
 
         return self.__y
 
     @y.setter
     def y(self, value):
-        """Sets y."""
+        """Setter for y."""
         if not isinstance(value, int):
             raise TypeError("y must be an integer")
         if value < 0:
@@ -106,13 +106,13 @@ class Rectangle(Base):
 
     @property
     def id(self):
-        """Returns the id."""
+        """Getter for id."""
 
         return self.__id
 
     @id.setter
     def id(self, value):
-        """Sets the id."""
+        """Setter for id."""
 
         self.__id = value
 
@@ -145,6 +145,17 @@ class Rectangle(Base):
                 for k, v in kwargs.items():
                     if k in attributes:
                         setattr(self, k, v)
+
+    def to_dictionary(self):
+        """Returns the dictionary representation of a Rectangle."""
+
+        return {
+            'id': self.__id,
+            'width': self.__width,
+            'height': self.__height,
+            'x': self.__x,
+            'y': self.__y
+        }
 
     def __str__(self):
         """Returns the string representation of the object."""

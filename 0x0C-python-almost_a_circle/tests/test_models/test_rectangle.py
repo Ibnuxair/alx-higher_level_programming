@@ -125,6 +125,19 @@ class TestRectangle(unittest.TestCase):
         rect.update(id=10, width=20, height=30, x=40, y=50, invalid=60)
         self.assertEqual(rect.__str__(), "[Rectangle] (10) 40/50 - 20/30")
 
+    def test_to_dictionary(self):
+        """Test the to_dictionary method."""
+
+        rect = Rectangle(10, 20, 4, 7, 15)
+        expected = {
+            'id': 15,
+            'width': 10,
+            'height': 20,
+            'x': 4,
+            'y': 7
+        }
+        self.assertEqual(rect.to_dictionary(), expected)
+
     def test_str(self):
         """Test the __str__ method."""
 

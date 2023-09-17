@@ -45,6 +45,15 @@ class Square(Rectangle):
                 if k in attributes:
                     setattr(self, k, v)
 
+    def to_dictionary(self):
+        """Return a dictionary representation of the Square."""
+
+        return {
+            'id': self.id,
+            'size': self.width,
+            'x': self.x,
+            'y': self.y
+        }
 
     def __str__(self):
         """Return a string representation of a Square instance."""
