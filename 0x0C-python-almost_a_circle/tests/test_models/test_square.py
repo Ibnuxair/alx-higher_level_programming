@@ -37,6 +37,16 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(square.width, 7)
         self.assertEqual(square.height, 7)
 
+    def test_update_method(self):
+        """Test the update method."""
+
+        square = Square(5, 2, 3, 42)
+        square.update(1, 10, 20, 30)
+        self.assertEqual(square.id, 1)
+        self.assertEqual(square.size, 10)
+        self.assertEqual(square.x, 20)
+        self.assertEqual(square.y, 30)
+
     def test_str_method(self):
         """Test the __str__ method."""
 

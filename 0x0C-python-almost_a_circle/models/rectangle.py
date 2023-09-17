@@ -143,7 +143,8 @@ class Rectangle(Base):
         else:
             if kwargs:
                 for k, v in kwargs.items():
-                    setattr(self, k, v)
+                    if k in attributes:
+                        setattr(self, k, v)
 
     def __str__(self):
         """Returns the string representation of the object."""
