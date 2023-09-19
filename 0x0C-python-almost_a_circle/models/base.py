@@ -42,6 +42,15 @@ class Base:
 
         return json.dumps(dict_list)
 
+    @staticmethod
+    def from_json_string(json_string):
+        """Convert a JSON string to a list of dictionaries."""
+
+        if json_string is None or json_string == "":
+            return []
+
+        return json.loads(json_string)
+
     @classmethod
     def save_to_file(cls, list_objs):
         """Writes the JSON string representation of list_objs to a file."""
@@ -53,11 +62,29 @@ class Base:
             json_str = cls.to_json_string(list_objs)
             a_file.write(json_str)
 
-    @staticmethod
-    def from_json_string(json_string):
-        """Convert a JSON string to a list of dictionaries."""
+    @classmethod
+    def create(cls, **dictionary):
+        """Create an instance with attributes from a dictionary."""
 
-        if json_string is None or json_string == "":
-            return []
+        if cls.__name__ == "Rectangle":
+            dummy = cls(1, 1)
+        elif cls.__name__ == "Square":
+            dummy = cls(1)
+        else:
+            dummy = cls()
 
-        return json.loads(json_string)
+        dummy.update(**dictionary)  # Apply attributes from the dictionary
+        return dummy
+
+    def update(self, *args, **kwargs):
+        """Update attributes using arguments or keyword arguments."""
+
+        attributes = ["id", "width", "height", "x", "y"]
+
+        if args:
+            for i, value in enumerate(args):
+                setattr(self, attributes[i], value)
+        else:
+            for k, v in kwargs.items():
+                if k in attributes:
+                    setattr(self, k, v)

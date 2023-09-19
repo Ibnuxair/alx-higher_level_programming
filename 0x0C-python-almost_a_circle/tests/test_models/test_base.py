@@ -99,5 +99,47 @@ class TestBase(unittest.TestCase):
         result = Base.from_json_string(json_string)
         self.assertEqual(result, expected_result)
 
+    def test_create_with_empty_dictionary(self):
+        """Test creating an instance with an empty dictionary."""
+
+        obj = Base.create(**{})
+        self.assertIsInstance(obj, Base)
+
+    def test_create_with_rectangle_attributes(self):
+        """Test creating a Rectangle instance with attributes."""
+
+        rect_dict = {'width': 10, 'height': 5, 'x': 2, 'y': 3}
+        obj = Rectangle.create(**rect_dict)
+        self.assertIsInstance(obj, Rectangle)
+        self.assertEqual(obj.width, 10)
+        self.assertEqual(obj.height, 5)
+        self.assertEqual(obj.x, 2)
+        self.assertEqual(obj.y, 3)
+
+    def test_create_with_square_attributes(self):
+        """Test creating a Square instance with attributes."""
+
+        square_dict = {'size': 5, 'x': 2, 'y': 3}
+        obj = Square.create(**square_dict)
+        self.assertIsInstance(obj, Square)
+        self.assertEqual(obj.size, 5)
+        self.assertEqual(obj.x, 2)
+        self.assertEqual(obj.y, 3)
+
+    def test_create_with_mixed_attributes(self):
+        """Test creating an instance with mixed attributes."""
+
+        mixed_dict = {'id': 1, 'size': 5, 'x': 2}
+        obj = Square.create(**mixed_dict)
+
+        if isinstance(obj, (Rectangle, Square)):
+            if isinstance(obj, Rectangle):
+                self.assertEqual(obj.width, 5)
+                self.assertEqual(obj.height, 5)
+            elif isinstance(obj, Square):
+                self.assertEqual(obj.size, 5)
+        else:
+            self.fail(f"Unexpected object type: {type(obj).__name__}")
+
     if __name__ == '__main__':
         unittest.main()
