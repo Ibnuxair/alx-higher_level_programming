@@ -29,13 +29,16 @@ class Base:
         if list_dictionaries is None or len(list_dictionaries) == 0:
             return "[]"
 
+        if all(isinstance(item, dict) for item in list_dictionaries):
+            return json.dumps(list_dictionaries)
+
+        # Convert objects to dictionaries and then to JSON
         dict_list = []
-        for obj in list_dictionaries:
-            if hasattr(obj, 'to_dictionary') and callable(
-                    getattr(obj, 'to_dictionary')):
-                dict_list.append(obj.to_dictionary())
-        else:
-            dict_list.append(obj)
+        for item in list_dictionaries:
+            if hasattr(item, 'to_dictionary'):
+                dict_list.append(item.to_dictionary())
+            elif isinstance(item, dict):
+                dict_list.append(item)
 
         return json.dumps(dict_list)
 
