@@ -6,6 +6,7 @@ This is a module that defines a class named Base
 
 
 import json
+import os
 
 
 class Base:
@@ -88,3 +89,21 @@ class Base:
             for k, v in kwargs.items():
                 if k in attributes:
                     setattr(self, k, v)
+
+    @classmethod
+    def load_from_file(cls):
+        """Return a list of instances from a JSON file."""
+
+        filename = cls.__name__ + ".json"
+        instances_list = []
+
+        if os.path.exists(filename):
+            with open(filename, 'r', encoding='utf-8') as file:
+                json_data = file.read()
+                if json_data:
+                    json_list = cls.from_json_string(json_data)
+                    for item in json_list:
+                        instance = cls.create(**item)
+                        instances_list.append(instance)
+
+        return instances_list

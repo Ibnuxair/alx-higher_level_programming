@@ -141,5 +141,19 @@ class TestBase(unittest.TestCase):
         else:
             self.fail(f"Unexpected object type: {type(obj).__name__}")
 
+    def test_load_from_non_existing_file(self):
+        """Test loading from a non-existing file."""
+
+        result = Rectangle.load_from_file()
+        self.assertEqual(result, [])
+
+    def test_load_from_existing_file(self):
+        """Test loading from an existing file."""
+
+        rect = Rectangle(10, 7, 2, 8)
+        Rectangle.save_to_file([rect])
+        result = Rectangle.load_from_file()
+        self.assertEqual(result[0].to_dictionary(), rect.to_dictionary())
+
     if __name__ == '__main__':
         unittest.main()
