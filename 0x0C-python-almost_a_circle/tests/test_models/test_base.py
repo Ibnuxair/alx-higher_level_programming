@@ -4,7 +4,6 @@
 This module defines a class named TestBase.
 """
 
-
 import os
 import unittest
 from models.base import Base
@@ -47,6 +46,19 @@ class TestBase(unittest.TestCase):
         base_obj = Base()
         self.assertTrue(hasattr(base_obj, 'id'))
 
+    def test_base_id_assignment(self):
+        """Test automatic ID assignment."""
+
+        base_obj1 = Base()
+        base_obj2 = Base()
+        self.assertEqual(base_obj1.id + 1, base_obj2.id)
+
+    def test_base_custom_id(self):
+        """Test assigning a custom ID."""
+
+        base_obj = Base(89)
+        self.assertEqual(base_obj.id, 89)
+
     def test_to_json_string_empty_list(self):
         """Test to_json_string with an empty list."""
 
@@ -58,6 +70,15 @@ class TestBase(unittest.TestCase):
 
         json_string = Base.to_json_string(None)
         self.assertEqual(json_string, "[]")
+
+    def test_to_json_string(self):
+        """Test to_json_string with various inputs."""
+
+        empty_json = Base.to_json_string([])
+        self.assertEqual(empty_json, "[]")
+
+        id_list_json = Base.to_json_string([{'id': 12}])
+        self.assertEqual(id_list_json, '[{"id": 12}]')
 
     def test_save_to_file_empty_list(self):
         """Test saving an empty list of objects to a file."""
@@ -65,39 +86,21 @@ class TestBase(unittest.TestCase):
         Base.save_to_file([])
         self.assertTrue(os.path.exists("Base.json"))
 
-    def test_to_json_string_empty_list(self):
-        """Test to_json_string with an empty list."""
-
-        json_string = Base.to_json_string([])
-        self.assertEqual(json_string, "[]")
-
-    def test_to_json_string_none(self):
-        """Test to_json_string with None."""
-
-        json_string = Base.to_json_string(None)
-        self.assertEqual(json_string, "[]")
-
-    def test__from_json_string_empty(self):
-        """Test with an empty JSON string."""
+    def test_from_json_string_empty(self):
+        """Test from_json_string with an empty JSON string."""
 
         json_string = ""
         result = Base.from_json_string(json_string)
         self.assertEqual(result, [])
 
-    def test_from_json_string_none(self):
-        """Test with a None JSON string."""
+    def test_from_json_string(self):
+        """Test from_json_string with various inputs."""
 
-        json_string = None
-        result = Base.from_json_string(json_string)
-        self.assertEqual(result, [])
+        empty_list = Base.from_json_string("[]")
+        self.assertEqual(empty_list, [])
 
-    def test_from_json_string_valid(self):
-        """Test with a valid JSON string."""
-
-        json_string = '[{"x": 2, "width": 10, "id": 1, "height": 7, "y": 8}]'
-        expected_result = [{"x": 2, "width": 10, "id": 1, "height": 7, "y": 8}]
-        result = Base.from_json_string(json_string)
-        self.assertEqual(result, expected_result)
+        id_list = Base.from_json_string('[{"id": 89}]')
+        self.assertEqual(id_list, [{'id': 89}])
 
     def test_create_with_empty_dictionary(self):
         """Test creating an instance with an empty dictionary."""
