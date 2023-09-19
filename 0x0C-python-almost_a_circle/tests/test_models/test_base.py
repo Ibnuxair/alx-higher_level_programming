@@ -65,5 +65,39 @@ class TestBase(unittest.TestCase):
         Base.save_to_file([])
         self.assertTrue(os.path.exists("Base.json"))
 
+    def test_to_json_string_empty_list(self):
+        """Test to_json_string with an empty list."""
+
+        json_string = Base.to_json_string([])
+        self.assertEqual(json_string, "[]")
+
+    def test_to_json_string_none(self):
+        """Test to_json_string with None."""
+
+        json_string = Base.to_json_string(None)
+        self.assertEqual(json_string, "[]")
+
+    def test__from_json_string_empty(self):
+        """Test with an empty JSON string."""
+
+        json_string = ""
+        result = Base.from_json_string(json_string)
+        self.assertEqual(result, [])
+
+    def test_from_json_string_none(self):
+        """Test with a None JSON string."""
+
+        json_string = None
+        result = Base.from_json_string(json_string)
+        self.assertEqual(result, [])
+
+    def test_from_json_string_valid(self):
+        """Test with a valid JSON string."""
+
+        json_string = '[{"x": 2, "width": 10, "id": 1, "height": 7, "y": 8}]'
+        expected_result = [{"x": 2, "width": 10, "id": 1, "height": 7, "y": 8}]
+        result = Base.from_json_string(json_string)
+        self.assertEqual(result, expected_result)
+
     if __name__ == '__main__':
         unittest.main()
