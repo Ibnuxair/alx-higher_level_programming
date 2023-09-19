@@ -24,11 +24,20 @@ class Base:
 
     @staticmethod
     def to_json_string(list_dictionaries):
-        """Returns the JSON string representation of list_dictionaries."""
+        """Convert a list of dictionaries to a JSON string."""
 
         if list_dictionaries is None or len(list_dictionaries) == 0:
             return "[]"
-        return json.dumps([obj.to_dictionary() for obj in list_dictionaries])
+
+        dict_list = []
+        for obj in list_dictionaries:
+            if hasattr(obj, 'to_dictionary') and callable(
+                    getattr(obj, 'to_dictionary')):
+                dict_list.append(obj.to_dictionary())
+        else:
+            dict_list.append(obj)
+
+        return json.dumps(dict_list)
 
     @classmethod
     def save_to_file(cls, list_objs):

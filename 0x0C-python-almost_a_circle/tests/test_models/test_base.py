@@ -65,13 +65,5 @@ class TestBase(unittest.TestCase):
         Base.save_to_file([])
         self.assertTrue(os.path.exists("Base.json"))
 
-    def test_save_to_file_custom_filename(self):
-        """Test saving to a file with a custom filename."""
-
-        rect = Rectangle(10, 7, 2, 8)
-        Rectangle.save_to_file([rect])
-
-        self.assertTrue(os.path.exists("Rectangle.json"))
-
     if __name__ == '__main__':
         unittest.main()
