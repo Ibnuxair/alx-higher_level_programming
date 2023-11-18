@@ -19,14 +19,7 @@ if __name__ == "__main__":
                          user=username, passwd=password, db=db_name)
     cursor = db.cursor()
 
-    query = (
-        "SELECT DISTINCT MIN(states.id), states.name "
-        "FROM states "
-        "WHERE name LIKE '{}' "
-        "GROUP BY states.name "
-        "ORDER BY MIN(states.id) ASC "
-    )
-    query = query.format(state_searched)
+    query = f"SELECT DISTINCT id, name FROM states WHERE name LIKE '{state_searched}' ORDER BY id ASC"
     cursor.execute(query)
 
     states = cursor.fetchall()
