@@ -19,7 +19,12 @@ if __name__ == "__main__":
                          user=username, passwd=password, db=db_name)
     cursor = db.cursor()
 
-    query = f"SELECT DISTINCT id, name FROM states WHERE name LIKE '{state_searched}' ORDER BY id ASC"
+    query = (
+        f"SELECT DISTINCT id, name "
+        f"FROM states "
+        f"WHERE name LIKE '{state_searched}' "
+        f"ORDER BY id ASC"
+    )
     cursor.execute(query)
 
     states = cursor.fetchall()
