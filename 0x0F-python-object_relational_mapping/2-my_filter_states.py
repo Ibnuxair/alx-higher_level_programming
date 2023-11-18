@@ -20,11 +20,11 @@ if __name__ == "__main__":
     cursor = db.cursor()
 
     query = (
-        "SELECT MIN(states.id), states.name "
+        "SELECT DISTINCT MIN(states.id), states.name "
         "FROM states "
         "WHERE name LIKE '{}' "
         "GROUP BY states.name "
-        "ORDER BY MIN(states.id) ASC"
+        "ORDER BY MIN(states.id) ASC "
     )
     query = query.format(state_searched)
     cursor.execute(query)
