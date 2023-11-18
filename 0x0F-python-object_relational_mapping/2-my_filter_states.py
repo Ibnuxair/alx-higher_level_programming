@@ -20,11 +20,11 @@ if __name__ == "__main__":
     cursor = db.cursor()
 
     query = (
-        f"SELECT DISTINCT id, name "
-        f"FROM states "
-        f"WHERE name LIKE '{state_searched}' "
-        f"ORDER BY id ASC"
-    )
+        "SELECT DISTINCT id, name "
+        "FROM states "
+        "WHERE name LIKE '{}' "
+        "ORDER BY id ASC"
+    ).format(state_searched)
     cursor.execute(query)
 
     states = cursor.fetchall()
