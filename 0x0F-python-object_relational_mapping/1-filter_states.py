@@ -17,11 +17,10 @@ if __name__ == "__main__":
     cursor = db.cursor()
 
     query = (
-        "SELECT MIN(states.id), states.name "
+        "SELECT DISTINCT id, name "
         "FROM states "
         "WHERE name LIKE 'N%' "
-        "GROUP BY states.name "
-        "ORDER BY MIN(states.id) ASC"
+        "ORDER BY id ASC"
     )
     cursor.execute(query)
 
