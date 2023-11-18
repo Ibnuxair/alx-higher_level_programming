@@ -22,10 +22,11 @@ if __name__ == "__main__":
     query = (
         "SELECT MIN(states.id), states.name "
         "FROM states "
-        f"WHERE name LIKE  '{state_searched}'"
+        "WHERE name LIKE '{}' "
         "GROUP BY states.name "
         "ORDER BY MIN(states.id) ASC"
     )
+    query = query.format(state_searched)
     cursor.execute(query)
 
     states = cursor.fetchall()
