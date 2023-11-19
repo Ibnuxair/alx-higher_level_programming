@@ -23,4 +23,4 @@ if __name__ == "__main__":
     for state in states:
         print(f"{state.id}: {state.name}")
 
-        session.close()
+    session.close()
