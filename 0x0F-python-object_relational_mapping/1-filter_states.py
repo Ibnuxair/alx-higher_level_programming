@@ -19,7 +19,7 @@ if __name__ == "__main__":
     query = (
         "SELECT DISTINCT id, name "
         "FROM states "
-        "WHERE name LIKE 'N%' "
+        "WHERE name COLLATE utf8mb4_bin LIKE 'N%' "
         "ORDER BY id ASC"
     )
     cursor.execute(query)
