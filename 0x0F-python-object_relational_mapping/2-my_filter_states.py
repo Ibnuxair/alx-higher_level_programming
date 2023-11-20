@@ -22,7 +22,7 @@ if __name__ == "__main__":
     query = (
         "SELECT DISTINCT id, name "
         "FROM states "
-        "WHERE name LIKE '{}' "
+        "WHERE name COLLATE utf8mb4_bin LIKE '{}' "
         "ORDER BY id ASC"
     ).format(state_searched)
     cursor.execute(query)
