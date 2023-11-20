@@ -1,5 +1,11 @@
 #!/usr/bin/python3
 
+"""
+This script prints the State object with the name passed as argument
+
+from the database hbtn_0e_6_usa
+"""
+
 import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
